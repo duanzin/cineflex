@@ -1,9 +1,21 @@
 import React from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 export default function Filme(props) {
   return (
-    <Li>
+    <Li
+      onClick={() => {
+        const request = axios.get(
+          `https://mock-api.driven.com.br/api/v8/cineflex/movies/${props.id}/showtimes`
+        );
+        request.then((resposta) => {
+          props.setfilmeescolhido(resposta.data);
+          props.setpagina("horario");
+          props.setH2("Selecione o horário");
+        });
+      }}
+    >
       <img src={props.poster} alt={props.nomefilme}></img>
     </Li>
   );
@@ -18,7 +30,7 @@ const Li = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
-  :hover{
+  :hover {
     cursor: pointer;
   }
   img {

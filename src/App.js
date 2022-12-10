@@ -3,9 +3,13 @@ import GlobalStyle from "./globalStyle";
 import styled from "styled-components";
 import axios from "axios";
 import Home from "./Home";
+import Assentos from "./Assentos";
+import Comprovante from "./Comprovante";
 
 function App() {
   const [filmes, setFilmes] = React.useState([]);
+  const [filmeescolhido, setfilmeescolhido] = React.useState(undefined);
+  const [H2, setH2] = React.useState("Selecione o filme");
 
   React.useEffect(() => {
     const requisicao = axios.get(
@@ -23,8 +27,13 @@ function App() {
         <Header>
           <h1>CINEFLEX</h1>
         </Header>
-        <h2>Selecione o filme</h2>
-        <Home filmes={filmes}/>
+        <h2>{H2}</h2>
+        <Home
+          filmes={filmes}
+          setfilmeescolhido={setfilmeescolhido}
+          filmeescolhido={filmeescolhido}
+          setH2={setH2}
+        />
       </Container>
     </>
   );
@@ -74,6 +83,16 @@ const Header = styled.div`
     text-align: center;
     color: #e8833a;
   }
+`;
+
+const Footer = styled.footer`
+  position: fixed;
+  width: 100vw;
+  height: 117px;
+  bottom: 0px;
+  background: #dfe6ed;
+  border-top: 1px solid #9eadba;
+  display: flex;
 `;
 
 export default App;
