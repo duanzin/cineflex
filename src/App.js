@@ -3,12 +3,12 @@ import GlobalStyle from "./globalStyle";
 import styled from "styled-components";
 import axios from "axios";
 import Home from "./Home";
-import Assentos from "./Assentos";
 import Comprovante from "./Comprovante";
 
 function App() {
   const [filmes, setFilmes] = React.useState([]);
   const [filmeescolhido, setfilmeescolhido] = React.useState(undefined);
+  const [sessaoescolhida, setsessaoescolhida] = React.useState(undefined);
   const [H2, setH2] = React.useState("Selecione o filme");
 
   React.useEffect(() => {
@@ -32,6 +32,8 @@ function App() {
           filmes={filmes}
           setfilmeescolhido={setfilmeescolhido}
           filmeescolhido={filmeescolhido}
+          setsessaoescolhida={setsessaoescolhida}
+          sessaoescolhida={sessaoescolhida}
           setH2={setH2}
         />
       </Container>

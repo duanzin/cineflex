@@ -1,34 +1,46 @@
 import React from "react";
 import styled from "styled-components";
+import Assentos from "./Assentos";
 import Filme from "./Filme";
 import Horario from "./Horario";
 
 export default function Home(props) {
-    const [pagina,setpagina] = React.useState("");
+  const [pagina, setpagina] = React.useState("");
 
   switch (pagina) {
     case "horario":
-
-        return(
-        <Horario horarios={props.filmeescolhido.days}/>
-        )
-  
+      return (
+        <Horario
+          horarios={props.filmeescolhido.days}
+          setpagina={setpagina}
+          setsessaoescolhida={props.setsessaoescolhida}
+          setH2={props.setH2}
+        />
+      );
+    case "assento":
+      return (
+        <Assentos
+          assentos={props.sessaoescolhida.seats}
+          setpagina={setpagina}
+        />
+      );
     default:
-        return (
-              <UlFilmes display={props.display}>
-                {props.filmes.map((filme) => (
-                  <Filme
-                    key={filme.id}
-                    poster={filme.posterURL}
-                    id={filme.id}
-                    nomefilme={filme.title}
-                    filmeescolhido={props.filmeescolhido}
-                    setfilmeescolhido={props.setfilmeescolhido}
-                    setpagina={setpagina}
-                    setH2={props.setH2}
-                  />
-                ))}
-              </UlFilmes>)
+      return (
+        <UlFilmes display={props.display}>
+          {props.filmes.map((filme) => (
+            <Filme
+              key={filme.id}
+              poster={filme.posterURL}
+              id={filme.id}
+              nomefilme={filme.title}
+              filmeescolhido={props.filmeescolhido}
+              setfilmeescolhido={props.setfilmeescolhido}
+              setpagina={setpagina}
+              setH2={props.setH2}
+            />
+          ))}
+        </UlFilmes>
+      );
   }
 }
 

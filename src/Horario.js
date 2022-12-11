@@ -3,7 +3,6 @@ import styled from "styled-components";
 import LiHorario from "./LiHorario";
 
 export default function Horario(props){
-    console.log(props.horarios);
 
     return(
         <UlHorario>
@@ -14,6 +13,9 @@ export default function Horario(props){
             dia={horario.weekday}
             data={horario.date}
             horas={horario.showtimes}
+            setpagina={props.setpagina}
+            setsessaoescolhida={props.setsessaoescolhida}
+            setH2={props.setH2}
           />
         ))}
       </UlHorario>

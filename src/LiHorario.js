@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 export default function LIHorario(props) {
   return (
@@ -8,9 +9,23 @@ export default function LIHorario(props) {
         {props.dia} - {props.data}
       </p>
       <div>
-      {props.horas.map((hora) => (
-        <button key={hora.id}>{hora.name}</button>
-      ))}
+        {props.horas.map((hora) => (
+          <button
+            key={hora.id}
+            onClick={() => {
+              const request = axios.get(
+                `https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${hora.id}/seats`
+              );
+              request.then((resposta) => {
+                props.setsessaoescolhida(resposta.data);
+                props.setpagina("assento");
+                props.setH2("Selecione o(s) assento(s)");
+              });
+            }}
+          >
+            {hora.name}
+          </button>
+        ))}
       </div>
     </Li>
   );
@@ -31,7 +46,7 @@ const Li = styled.li`
     align-items: center;
     color: #293845;
   }
-  div{
+  div {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -49,8 +64,8 @@ const Li = styled.li`
     justify-content: center;
     align-items: center;
     color: #ffffff;
-     :hover{
-        cursor: pointer;
+    :hover {
+      cursor: pointer;
     }
   }
 `;
