@@ -1,37 +1,41 @@
 import React from "react";
 import styled from "styled-components";
+import LiAssento from "./LiAssento";
 
 export default function Assentos(props) {
   return (
     <>
       <UlAssentos>
         {props.assentos.map((assento) => (
-          <button key={assento.id} id={assento.id}>
-            {assento.name}
-          </button>
+          <LiAssento
+            key={assento.id}
+            id={assento.id}
+            disponivel={assento.isAvailable}
+            numero={assento.name}
+          />
         ))}
         <div>
           <div>
-            <button />
+            <Exemplo cor={"#1AAE9E"}></Exemplo>
             <p>Selecionado</p>
           </div>
           <div>
-            <button />
+            <Exemplo cor={"#C3CFD9"}></Exemplo>
             <p>Disponível</p>
           </div>
           <div>
-            <button />
+            <Exemplo cor={"#fbe192"}></Exemplo>
             <p>Indisponível</p>
           </div>
         </div>
       </UlAssentos>
       <Identidade>
         <div>
-          <label for="nomecomprador">Nome do comprador:</label>
+          <label>Nome do comprador:</label>
           <input id="nomecomprador" placeholder="Digite seu nome..." />
         </div>
         <div>
-          <label for="cpf">CPF do comprador:</label>
+          <label>CPF do comprador:</label>
           <input id="cpf" placeholder="Digite seu CPF..." />
         </div>
       </Identidade>
@@ -47,23 +51,6 @@ const UlAssentos = styled.ul`
   column-gap: 7px;
   row-gap: 18px;
   margin: 0 24px;
-  button {
-    width: 26px;
-    height: 26px;
-    background: #c3cfd9;
-    border: 1px solid #808f9d;
-    border-radius: 12px;
-    font-family: "Roboto";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 11px;
-    line-height: 13px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    letter-spacing: 0.04em;
-    color: #000000;
-  }
   div {
     width: 100%;
     display: flex;
@@ -87,6 +74,24 @@ const UlAssentos = styled.ul`
       }
     }
   }
+`;
+
+const Exemplo = styled.button`
+  width: 26px;
+  height: 26px;
+  background: ${(props) => props.cor};
+  border: 1px solid #808f9d;
+  border-radius: 12px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.04em;
+  color: #000000;
 `;
 
 const Identidade = styled.div`
