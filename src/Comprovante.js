@@ -32,7 +32,8 @@ export default function Comprovante(props) {
           props.setnumcadeira([]);
           props.setcorH2("#293845");
           props.setpesoH2(400);
-          navigate(`/`);
+          props.setH2("Selecione o filme");
+          navigate("/");
         }}
       >
         Voltar pra Home

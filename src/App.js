@@ -38,6 +38,7 @@ function App() {
         <Routes>
           <Route
             path="/"
+            exact={true}
             element={
               <Home
                 filmes={filmes}
@@ -82,6 +83,7 @@ function App() {
                 setH2={setH2}
                 sessao={sessao}
                 numcadeira={numcadeira}
+                setnumcadeira={setnumcadeira}
                 reservanome={reservanome}
                 reservacpf={reservacpf}
               />

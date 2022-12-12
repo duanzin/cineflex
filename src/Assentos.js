@@ -9,6 +9,9 @@ export default function Assentos(props) {
   const { idSessao } = useParams();
   const navigate = useNavigate();
   props.setH2("Selecione o(s) assento(s)");
+  props.setcorH2("#293845");
+  props.setpesoH2(400);
+
   const [reservaid, setreservaid] = React.useState([]);
   React.useEffect(() => {
     const request = axios.get(

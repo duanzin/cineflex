@@ -3,7 +3,10 @@ import styled from "styled-components";
 import Filme from "./Filme";
 
 export default function Home(props) {
-  props.setH2("Selecione o filme");
+      props.setH2("Selecione o filme");
+      props.setcorH2("#293845");
+      props.setpesoH2(400);
+      props.setH2("Selecione o filme");
       return (
         <UlFilmes display={props.display}>
           {props.filmes.map((filme) => (
