@@ -4,18 +4,16 @@ import styled from "styled-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from "axios";
 import Home from "./Home";
+import Horario from "./Horario";
+import Assentos from "./Assentos";
+import Comprovante from "./Comprovante";
 
 function App() {
   const [filmes, setFilmes] = React.useState([]);
-  const [filmeescolhido, setfilmeescolhido] = React.useState(undefined);
-  const [sessaoescolhida, setsessaoescolhida] = React.useState(undefined);
-  const [reservaid, setreservaid] = React.useState([]);
-  const [reservanome, setreservanome] = React.useState("");
-  const [reservacpf, setreservacpf] = React.useState("");
-  const [numcadeira, setnumcadeira] =  React.useState([]);
   const [H2, setH2] = React.useState("Selecione o filme");
   const [corH2, setcorH2] = React.useState("#293845");
   const [pesoH2, setpesoH2] = React.useState(400);
+
   React.useEffect(() => {
     const requisicao = axios.get(
       "https://mock-api.driven.com.br/api/v8/cineflex/movies"
@@ -26,33 +24,56 @@ function App() {
     });
   }, []);
   return (
-    <>
+    <BrowserRouter>
       <GlobalStyle />
       <Container corH2={corH2} pesoH2={pesoH2}>
         <Header>
           <h1>CINEFLEX</h1>
         </Header>
         <h2>{H2}</h2>
-        <Home
-          filmes={filmes}
-          setfilmeescolhido={setfilmeescolhido}
-          filmeescolhido={filmeescolhido}
-          setsessaoescolhida={setsessaoescolhida}
-          sessaoescolhida={sessaoescolhida}
-          setreservaid={setreservaid}
-          reservaid={reservaid}
-          setreservanome={setreservanome}
-          reservanome={reservanome}
-          setreservacpf={setreservacpf}
-          reservacpf={reservacpf}
-          numcadeira={numcadeira}
-          setnumcadeira={setnumcadeira}
-          setH2={setH2}
-          setcorH2={setcorH2}
-          setpesoH2={setpesoH2}
-        />
+        <Routes>
+          <Route
+            index
+            element={
+              <Home
+                filmes={filmes}
+                setH2={setH2}
+                setcorH2={setcorH2}
+                setpesoH2={setpesoH2}
+              />
+            }
+          />
+          <Route
+            path="/sessoes/:idFilme"
+            element={
+              <Horario
+                setH2={setH2}
+              />
+            }
+          />
+          <Route
+            path="/assentos/:idSessao"
+            element={
+              <Assentos
+                setcorH2={setcorH2}
+                setpesoH2={setpesoH2}
+                setH2={setH2}
+              />
+            }
+          />
+          <Route
+            path="/sucesso"
+            element={
+              <Comprovante
+                setcorH2={setcorH2}
+                setpesoH2={setpesoH2}
+                setH2={setH2}
+              />
+            }
+          />
+        </Routes>
       </Container>
-    </>
+    </BrowserRouter>
   );
 }
 

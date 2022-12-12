@@ -21,8 +21,6 @@ export default function LiAssento(props) {
             setborda("#0E7D71");
             props.setreservaid((arr) => [...arr, props.id]);
             props.setnumcadeira((arr) => [...arr, props.numero]);
-            console.log(props.reservaid);
-            console.log(props.numcadeira);
           } else {
             setclicado("false");
             setcor("#C3CFD9");
@@ -35,7 +33,6 @@ export default function LiAssento(props) {
             props.setnumcadeira((prev) =>
               prev.filter((num) => num !== tirar)
             );
-            console.log(props.reservaid);
           }
         } else {
           alert("Esse assento não está disponível");

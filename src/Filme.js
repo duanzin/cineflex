@@ -1,19 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Filme(props) {
+  const navigate = useNavigate();
   return (
     <Li
       onClick={() => {
-        const request = axios.get(
-          `https://mock-api.driven.com.br/api/v8/cineflex/movies/${props.id}/showtimes`
-        );
-        request.then((resposta) => {
-          props.setfilmeescolhido(resposta.data);
-          props.setpagina("horario");
-          props.setH2("Selecione o horário");
-        });
+        navigate(`/sessoes/${props.id}`);
       }}
     >
       <img src={props.poster} alt={props.nomefilme}></img>

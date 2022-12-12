@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function LIHorario(props) {
+  const navigate = useNavigate();
   return (
     <Li>
       <p>
@@ -13,14 +14,8 @@ export default function LIHorario(props) {
           <button
             key={hora.id}
             onClick={() => {
-              const request = axios.get(
-                `https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${hora.id}/seats`
-              );
-              request.then((resposta) => {
-                props.setsessaoescolhida(resposta.data);
-                props.setpagina("assento");
-                props.setH2("Selecione o(s) assento(s)");
-              });
+              props.setH2("Selecione o(s) assento(s)");
+              navigate(`/assentos/${hora.id}`);
             }}
           >
             {hora.name}

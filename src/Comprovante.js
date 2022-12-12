@@ -2,6 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 export default function Comprovante(props) {
+  props.setH2("Pedido feito com sucesso!");
+  props.setcorH2("#247A6B");
+  props.setpesoH2(700);
   return (
     <Informacoes>
       <div>
@@ -24,12 +27,12 @@ export default function Comprovante(props) {
       </div>
       <button
         onClick={() => {
-            props.setreservaid([]);
-            props.setnumcadeira([]);
-            props.setH2("Selecione o filme");
-            props.setcorH2("#293845");
-            props.setpesoH2(400);
-            props.setpagina("");
+          props.setreservaid([]);
+          props.setnumcadeira([]);
+          props.setH2("Selecione o filme");
+          props.setcorH2("#293845");
+          props.setpesoH2(400);
+          props.setpagina("");
         }}
       >
         Voltar pra Home
