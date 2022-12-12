@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Assentos from "./Assentos";
 import Filme from "./Filme";
 import Horario from "./Horario";
+import Comprovante from "./Comprovante";
 
 export default function Home(props) {
   const [pagina, setpagina] = React.useState("");
@@ -21,7 +22,35 @@ export default function Home(props) {
       return (
         <Assentos
           assentos={props.sessaoescolhida.seats}
+          reservaid={props.reservaid}
+          setreservaid={props.setreservaid}
+          reservanome={props.reservanome}
+          setreservanome={props.setreservanome}
+          reservacpf={props.reservacpf}
+          setreservacpf={props.setreservacpf}
+          numcadeira={props.numcadeira}
+          setnumcadeira={props.setnumcadeira}
           setpagina={setpagina}
+          setH2={props.setH2}
+          setcorH2={props.setcorH2}
+          setpesoH2={props.setpesoH2}
+        />
+      );
+    case "final":
+      return (
+        <Comprovante
+          dia={props.sessaoescolhida.day.date}
+          sessao={props.sessaoescolhida.name}
+          filme={props.sessaoescolhida.movie.title}
+          reservanome={props.reservanome}
+          reservacpf={props.reservacpf}
+          numcadeira={props.numcadeira}
+          setpagina={setpagina}
+          setH2={props.setH2}
+          setcorH2={props.setcorH2}
+          setpesoH2={props.setpesoH2}
+          setnumcadeira={props.setnumcadeira}
+          setreservaid={props.setreservaid}
         />
       );
     default:
@@ -48,7 +77,6 @@ const UlFilmes = styled.ul`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  margin: 0 30px;
   row-gap: 11px;
   justify-content: space-between;
 `;

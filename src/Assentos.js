@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import axios from "axios";
 import LiAssento from "./LiAssento";
 
 export default function Assentos(props) {
@@ -12,19 +13,23 @@ export default function Assentos(props) {
             id={assento.id}
             disponivel={assento.isAvailable}
             numero={assento.name}
+            reservaid={props.reservaid}
+            setreservaid={props.setreservaid}
+            numcadeira={props.numcadeira}
+            setnumcadeira={props.setnumcadeira}
           />
         ))}
         <div>
           <div>
-            <Exemplo cor={"#1AAE9E"}></Exemplo>
+            <Exemplo cor={"#1AAE9E"} borda={"#0E7D71"}></Exemplo>
             <p>Selecionado</p>
           </div>
           <div>
-            <Exemplo cor={"#C3CFD9"}></Exemplo>
+            <Exemplo cor={"#C3CFD9"} borda={"#808F9D"}></Exemplo>
             <p>Disponível</p>
           </div>
           <div>
-            <Exemplo cor={"#fbe192"}></Exemplo>
+            <Exemplo cor={"#fbe192"} borda={"#F7C52B"}></Exemplo>
             <p>Indisponível</p>
           </div>
         </div>
@@ -32,14 +37,49 @@ export default function Assentos(props) {
       <Identidade>
         <div>
           <label>Nome do comprador:</label>
-          <input id="nomecomprador" placeholder="Digite seu nome..." />
+          <input
+            id="nomecomprador"
+            type="text"
+            value={props.reservanome}
+            onChange={(e) => props.setreservanome(e.target.value)}
+            placeholder="Digite seu nome..."
+            required
+          />
         </div>
         <div>
           <label>CPF do comprador:</label>
-          <input id="cpf" placeholder="Digite seu CPF..." />
+          <input
+            id="cpf"
+            type="text"
+            value={props.reservacpf}
+            pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+            onChange={(e) => props.setreservacpf(e.target.value)}
+            placeholder="Digite seu CPF..."
+            required
+          />
         </div>
+        <button
+          type="submit"
+          onClick={() => {
+            const request = axios.post(
+              "https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many",
+              {
+                ids: props.reservaid,
+                name: props.reservanome,
+                cpf: props.reservacpf,
+              }
+            );
+            request.then(
+              props.setpagina("final"),
+              props.setH2("Pedido feito com sucesso!"),
+              props.setcorH2("#247A6B"),
+              props.setpesoH2(700)
+            );
+          }}
+        >
+          Reservar assento(s)
+        </button>
       </Identidade>
-      <Reservar>Reservar assento(s)</Reservar>
     </>
   );
 }
@@ -50,7 +90,6 @@ const UlAssentos = styled.ul`
   flex-direction: row;
   column-gap: 7px;
   row-gap: 18px;
-  margin: 0 24px;
   div {
     width: 100%;
     display: flex;
@@ -80,7 +119,7 @@ const Exemplo = styled.button`
   width: 26px;
   height: 26px;
   background: ${(props) => props.cor};
-  border: 1px solid #808f9d;
+  border: 1px solid ${(props) => props.borda};
   border-radius: 12px;
   font-family: "Roboto";
   font-style: normal;
@@ -94,14 +133,34 @@ const Exemplo = styled.button`
   color: #000000;
 `;
 
-const Identidade = styled.div`
+const Identidade = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-top: 42px;
-  margin-bottom: 57px;
   row-gap: 12px;
+  button {
+    width: 225px;
+    height: 42px;
+    margin-top: 57px;
+    background: #e8833a;
+    border-radius: 3px;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.04em;
+    border: none;
+    color: #ffffff;
+    :hover{
+      cursor: pointer;
+    }
+  }
   div {
     display: flex;
     flex-direction: column;
@@ -131,22 +190,4 @@ const Identidade = styled.div`
       }
     }
   }
-`;
-
-const Reservar = styled.button`
-  width: 225px;
-  height: 42px;
-  background: #e8833a;
-  border-radius: 3px;
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 21px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  letter-spacing: 0.04em;
-  border: none;
-  color: #ffffff;
 `;
