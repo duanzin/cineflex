@@ -142,14 +142,4 @@ const Header = styled.div`
   }
 `;
 
-const Footer = styled.footer`
-  position: fixed;
-  width: 100vw;
-  height: 117px;
-  bottom: 0px;
-  background: #dfe6ed;
-  border-top: 1px solid #9eadba;
-  display: flex;
-`;
-
 export default App;
