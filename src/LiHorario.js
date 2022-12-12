@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function LIHorario(props) {
   const navigate = useNavigate();
   return (
-    <Li>
+    <Li data-test="movie-day">
       <p>
         {props.dia} - {props.data}
       </p>

@@ -11,6 +11,7 @@ export default function LiAssento(props) {
   );
   return (
     <Botao
+      data-test="seat"
       cor={cor}
       borda={borda}
       onClick={() => {
@@ -26,13 +27,9 @@ export default function LiAssento(props) {
             setcor("#C3CFD9");
             setborda("#808F9D");
             let remover = props.id;
-            props.setreservaid((prev) =>
-              prev.filter((id) => id !== remover)
-            );
+            props.setreservaid((prev) => prev.filter((id) => id !== remover));
             let tirar = props.numero;
-            props.setnumcadeira((prev) =>
-              prev.filter((num) => num !== tirar)
-            );
+            props.setnumcadeira((prev) => prev.filter((num) => num !== tirar));
           }
         } else {
           alert("Esse assento não está disponível");
@@ -60,7 +57,7 @@ const Botao = styled.button`
   justify-content: center;
   letter-spacing: 0.04em;
   color: #000000;
-  :hover{
+  :hover {
     cursor: pointer;
   }
 `;

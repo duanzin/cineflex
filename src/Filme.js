@@ -6,6 +6,7 @@ export default function Filme(props) {
   const navigate = useNavigate();
   return (
     <Li
+      data-test="movie"
       onClick={() => {
         navigate(`/sessoes/${props.id}`);
       }}

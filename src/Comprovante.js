@@ -9,25 +9,26 @@ export default function Comprovante(props) {
   props.setpesoH2(700);
   return (
     <Informacoes>
-      <div>
+      <div data-test="movie-info">
         <h3>Filme e sessão</h3>
         <p>{props.sessao.movie.title}</p>
         <p>
           {props.sessao.day.date} {props.sessao.name}
         </p>
       </div>
-      <div>
+      <div data-test="seats-info">
         <h3>Ingressos</h3>
         {props.numcadeira.map((cadeira) => (
           <p>Assento {cadeira}</p>
         ))}
       </div>
-      <div>
+      <div data-test="client-info">
         <h3>Comprador</h3>
         <p>Nome: {props.reservanome}</p>
         <p>CPF: {props.reservacpf}</p>
       </div>
       <button
+        data-test="go-home-btn"
         onClick={() => {
           props.setnumcadeira([]);
           props.setcorH2("#293845");

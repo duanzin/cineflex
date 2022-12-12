@@ -36,7 +36,7 @@ export default function Horario(props) {
               />
             ))}
           </UlHorario>
-          <Footer>
+          <Footer data-test="footer">
             <div>
               <img src={horarios.posterURL} alt="poster"></img>
             </div>

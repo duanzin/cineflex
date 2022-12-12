@@ -59,6 +59,7 @@ export default function Assentos(props) {
             <div>
               <label>Nome do comprador:</label>
               <input
+                data-test="client-name"
                 id="nomecomprador"
                 type="text"
                 value={props.reservanome}
@@ -70,6 +71,7 @@ export default function Assentos(props) {
             <div>
               <label>CPF do comprador:</label>
               <input
+                data-test="client-cpf"
                 id="cpf"
                 type="text"
                 value={props.reservacpf}
@@ -79,6 +81,7 @@ export default function Assentos(props) {
               />
             </div>
             <button
+              data-test="book-seat-btn"
               type="submit"
               onClick={() => {
                 const request = axios.post(
@@ -95,7 +98,7 @@ export default function Assentos(props) {
               Reservar assento(s)
             </button>
           </Identidade>
-          <Footer>
+          <Footer data-test="footer">
             <li>
               <img src={props.sessao.movie.posterURL} alt="poster"></img>
             </li>
