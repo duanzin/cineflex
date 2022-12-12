@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 export default function Comprovante(props) {
+  const navigate = useNavigate();
   props.setH2("Pedido feito com sucesso!");
   props.setcorH2("#247A6B");
   props.setpesoH2(700);
@@ -9,9 +11,9 @@ export default function Comprovante(props) {
     <Informacoes>
       <div>
         <h3>Filme e sessão</h3>
-        <p>{props.filme}</p>
+        <p>{props.sessao.movie.title}</p>
         <p>
-          {props.dia} {props.sessao}
+          {props.sessao.day.date} {props.sessao.name}
         </p>
       </div>
       <div>
@@ -27,12 +29,10 @@ export default function Comprovante(props) {
       </div>
       <button
         onClick={() => {
-          props.setreservaid([]);
           props.setnumcadeira([]);
-          props.setH2("Selecione o filme");
           props.setcorH2("#293845");
           props.setpesoH2(400);
-          props.setpagina("");
+          navigate(`/`);
         }}
       >
         Voltar pra Home

@@ -1,29 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import Filme from "./Filme";
-import Comprovante from "./Comprovante";
 
 export default function Home(props) {
-  const [pagina, setpagina] = React.useState("");
-
-  switch (pagina) {
-    case "final":
-      return (
-        <Comprovante
-          dia={props.sessaoescolhida.day.date}
-          sessao={props.sessaoescolhida.name}
-          filme={props.sessaoescolhida.movie.title}
-          reservanome={props.reservanome}
-          reservacpf={props.reservacpf}
-          numcadeira={props.numcadeira}
-          setH2={props.setH2}
-          setcorH2={props.setcorH2}
-          setpesoH2={props.setpesoH2}
-          setnumcadeira={props.setnumcadeira}
-          setreservaid={props.setreservaid}
-        />
-      );
-    default:
+  props.setH2("Selecione o filme");
       return (
         <UlFilmes display={props.display}>
           {props.filmes.map((filme) => (
@@ -38,8 +18,6 @@ export default function Home(props) {
         </UlFilmes>
       );
   }
-}
-
 const UlFilmes = styled.ul`
   display: flex;
   flex-wrap: wrap;

@@ -6,6 +6,7 @@ import LiHorario from "./LiHorario";
 
 export default function Horario(props) {
   const { idFilme } = useParams();
+  props.setH2("Selecione o horário");
   const [horarios, sethorarios] = React.useState(undefined);
   React.useEffect(() => {
     const request = axios.get(

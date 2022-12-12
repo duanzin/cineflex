@@ -7,29 +7,25 @@ import LiAssento from "./LiAssento";
 
 export default function Assentos(props) {
   const { idSessao } = useParams();
-  props.setH2("Selecione o horário");
-  const [assentos, setassentos] = React.useState(undefined);
+  const navigate = useNavigate();
+  props.setH2("Selecione o(s) assento(s)");
   const [reservaid, setreservaid] = React.useState([]);
-  const [reservanome, setreservanome] = React.useState("");
-  const [reservacpf, setreservacpf] = React.useState("");
-  const [numcadeira, setnumcadeira] = React.useState([]);
   React.useEffect(() => {
     const request = axios.get(
       `https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${idSessao}/seats`
     );
     request.then((resposta) => {
-      setassentos(resposta.data);
-      console.log("chegou");
+      props.setsessao(resposta.data);
     });
   }, []);
-  switch (assentos) {
+  switch (props.sessao) {
     case undefined:
       return <p>carregando</p>;
     default:
       return (
         <>
           <UlAssentos>
-            {assentos.seats.map((assento) => (
+            {props.sessao.seats.map((assento) => (
               <LiAssento
                 key={assento.id}
                 id={assento.id}
@@ -37,8 +33,8 @@ export default function Assentos(props) {
                 numero={assento.name}
                 reservaid={reservaid}
                 setreservaid={setreservaid}
-                numcadeira={numcadeira}
-                setnumcadeira={setnumcadeira}
+                numcadeira={props.numcadeira}
+                setnumcadeira={props.setnumcadeira}
               />
             ))}
             <div>
@@ -62,8 +58,8 @@ export default function Assentos(props) {
               <input
                 id="nomecomprador"
                 type="text"
-                value={reservanome}
-                onChange={(e) => setreservanome(e.target.value)}
+                value={props.reservanome}
+                onChange={(e) => props.setreservanome(e.target.value)}
                 placeholder="Digite seu nome..."
                 required
               />
@@ -73,8 +69,8 @@ export default function Assentos(props) {
               <input
                 id="cpf"
                 type="text"
-                value={reservacpf}
-                onChange={(e) => setreservacpf(e.target.value)}
+                value={props.reservacpf}
+                onChange={(e) => props.setreservacpf(e.target.value)}
                 placeholder="Digite seu CPF..."
                 required
               />
@@ -86,15 +82,11 @@ export default function Assentos(props) {
                   "https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many",
                   {
                     ids: reservaid,
-                    name: reservanome,
-                    cpf: reservacpf,
+                    name: props.reservanome,
+                    cpf: props.reservacpf,
                   }
                 );
-                request.then(
-                  props.setH2("Pedido feito com sucesso!"),
-                  props.setcorH2("#247A6B"),
-                  props.setpesoH2(700)
-                );
+                request.then(navigate(`/sucesso`));
               }}
             >
               Reservar assento(s)
@@ -178,7 +170,7 @@ const Identidade = styled.form`
     letter-spacing: 0.04em;
     border: none;
     color: #ffffff;
-    :hover{
+    :hover {
       cursor: pointer;
     }
   }

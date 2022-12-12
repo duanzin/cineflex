@@ -10,6 +10,10 @@ import Comprovante from "./Comprovante";
 
 function App() {
   const [filmes, setFilmes] = React.useState([]);
+  const [sessao, setsessao] = React.useState(undefined);
+  const [reservanome, setreservanome] = React.useState("");
+  const [reservacpf, setreservacpf] = React.useState("");
+  const [numcadeira, setnumcadeira] = React.useState([]);
   const [H2, setH2] = React.useState("Selecione o filme");
   const [corH2, setcorH2] = React.useState("#293845");
   const [pesoH2, setpesoH2] = React.useState(400);
@@ -33,7 +37,7 @@ function App() {
         <h2>{H2}</h2>
         <Routes>
           <Route
-            index
+            path="/"
             element={
               <Home
                 filmes={filmes}
@@ -58,6 +62,14 @@ function App() {
                 setcorH2={setcorH2}
                 setpesoH2={setpesoH2}
                 setH2={setH2}
+                sessao={sessao}
+                setsessao={setsessao}
+                reservacpf={reservacpf}
+                setreservacpf={setreservacpf}
+                reservanome={reservanome}
+                setreservanome={setreservanome}
+                numcadeira={numcadeira}
+                setnumcadeira={setnumcadeira}
               />
             }
           />
@@ -68,6 +80,10 @@ function App() {
                 setcorH2={setcorH2}
                 setpesoH2={setpesoH2}
                 setH2={setH2}
+                sessao={sessao}
+                numcadeira={numcadeira}
+                reservanome={reservanome}
+                reservacpf={reservacpf}
               />
             }
           />

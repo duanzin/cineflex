@@ -14,7 +14,6 @@ export default function LIHorario(props) {
           <button
             key={hora.id}
             onClick={() => {
-              props.setH2("Selecione o(s) assento(s)");
               navigate(`/assentos/${hora.id}`);
             }}
           >
