@@ -103,7 +103,7 @@ const Container = styled.div`
   flex-direction: column;
   margin-top: 67px;
   padding: 0 23px;
-  padding-bottom: 50px;
+  padding-bottom: 150px;
   h2 {
     font-family: "Roboto";
     font-style: normal;
